@@ -90,44 +90,49 @@ export default function ParkingLotForm({ addItem }) {
                     required 
                 />
             </FormGroup>
-            <FormGroup className="parking-lot-row">
-                <Input
-                    type="radio"
-                    name="radio-priority"
-                    value={PRIORITIES.High}
-                    checked={priority === PRIORITIES.High}
-                    onChange={handlePriorityChange}
-                    id="prio-high"
-                />
-                {' '}
-                <Label htmlFor="prio-high" className="me-3">
-                    High
-                </Label>
-                <Input
-                    type="radio"
-                    name="radio-priority"
-                    value={PRIORITIES.Medium}
-                    checked={priority === PRIORITIES.Medium}
-                    onChange={handlePriorityChange}
-                    id="prio-medium"
-                />
-                {' '}
-                <Label htmlFor="prio-medium" className="me-3">
-                    Medium
-                </Label>
-                <Input
-                    type="radio"
-                    name="radio-priority"
-                    value={PRIORITIES.Low}
-                    checked={priority === PRIORITIES.Low}
-                    onChange={handlePriorityChange}
-                    id="prio-low"
-                />
-                {' '}
-                <Label htmlFor="prio-low" className="me-3">
-                    Low
-                </Label>                
-
+            <FormGroup className="parking-lot-row d-flex flex-wrap">
+                <div>
+                    <Input
+                        type="radio"
+                        name="radio-priority"
+                        value={PRIORITIES.High}
+                        checked={priority === PRIORITIES.High}
+                        onChange={handlePriorityChange}
+                        id="prio-high"
+                    />
+                    {' '}
+                    <Label htmlFor="prio-high" className="me-3">
+                        High
+                    </Label>                    
+                </div>
+                <div>
+                    <Input
+                        type="radio"
+                        name="radio-priority"
+                        value={PRIORITIES.Medium}
+                        checked={priority === PRIORITIES.Medium}
+                        onChange={handlePriorityChange}
+                        id="prio-medium"
+                    />
+                    {' '}
+                    <Label htmlFor="prio-medium" className="me-3">
+                        Medium
+                    </Label>
+                </div>
+                <div>
+                    <Input
+                        type="radio"
+                        name="radio-priority"
+                        value={PRIORITIES.Low}
+                        checked={priority === PRIORITIES.Low}
+                        onChange={handlePriorityChange}
+                        id="prio-low"
+                    />
+                    {' '}
+                    <Label htmlFor="prio-low" className="me-3">
+                        Low
+                    </Label> 
+                </div>
             </FormGroup>
             <Button type="submit">
                 Submit
