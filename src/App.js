@@ -9,14 +9,14 @@ export default function App() {
     let [parkingLotItems, setParkingLotItems] = useState([
         {
             id: nanoid(),
-            date: "2024-06-01",
+            date: "06/01/2024",
             priority: "Low",
             link: "https://www.google.com",
             description: "Ultimate source of truth",
         },
         {
             id: nanoid(),
-            date: "2024-05-31",
+            date: "05/31/2024",
             priority: "Medium",
             link: "https://react.dev",
             description: "React documentation and tutorial",
