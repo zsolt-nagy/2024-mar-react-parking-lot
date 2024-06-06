@@ -5,7 +5,7 @@
 }
 
 .parking-lot-item-container {
-    width: 18rem;
+    width: 20rem;
     box-shadow: 0px 0px 10px rgba(155, 155, 155, 0.8);
     text-align: left;
 }
@@ -16,4 +16,17 @@
 
 .parking-lot-item-anchor:visited {
     color: rgb(125, 224, 152);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-button {
+    background-color: darkred;
+    border: none; 
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
 }
