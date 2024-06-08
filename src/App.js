@@ -6,25 +6,39 @@ import ParkingLotForm from "./Components/ParkingLotForm/ParkingLotForm";
 import ParkingLotList from "./Components/ParkingLotList/ParkingLotList";
 
 export default function App() {
-    let [parkingLotItems, setParkingLotItems] = useState([]);
+    let [parkingLotItems, setParkingLotItems] = useState(getInitialState());
+
+    function getInitialState() {
+        let savedState = localStorage.getItem("items");
+        if (typeof savedState === "string") {
+            return JSON.parse(savedState);
+        }
+        return [];
+    }
 
     function addItem(date, link, description, priority) {
-        setParkingLotItems((oldItems) => [
-            ...oldItems,
-            {
-                id: nanoid(),
-                date,
-                description,
-                link,
-                priority,
-            },
-        ]);
+        setParkingLotItems((oldItems) => {
+            let newItems = [
+                ...oldItems,
+                {
+                    id: nanoid(),
+                    date,
+                    description,
+                    link,
+                    priority,
+                },
+            ];
+            localStorage.setItem("items", JSON.stringify(newItems));
+            return newItems;
+        });
     }
 
     function deleteItem(id) {
-        setParkingLotItems((oldItems) =>
-            oldItems.filter((item) => item.id !== id)
-        );
+        setParkingLotItems((oldItems) => {
+            let newItems = oldItems.filter((item) => item.id !== id);
+            localStorage.setItem("items", JSON.stringify(newItems));
+            return newItems;
+        });
     }
 
     return (
