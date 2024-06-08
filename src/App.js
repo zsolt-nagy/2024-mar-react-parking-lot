@@ -4,6 +4,7 @@ import "./App.css";
 
 import ParkingLotForm from "./Components/ParkingLotForm/ParkingLotForm";
 import ParkingLotList from "./Components/ParkingLotList/ParkingLotList";
+import Timer from "./Components/Timer/Timer";
 
 export default function App() {
     let [parkingLotItems, setParkingLotItems] = useState(getInitialState());
@@ -46,6 +47,7 @@ export default function App() {
             <header>
                 <h1>Browser Parking Lot</h1>
                 <p>Send most of your browser tabs into retirement.</p>
+                <Timer />
             </header>
             <main>
                 <ParkingLotForm addItem={addItem} />
