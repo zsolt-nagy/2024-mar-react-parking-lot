@@ -10,12 +10,25 @@ const PRIORITIES = {
 
 
 
-export default function ParkingLotForm({ addItem }) {
+export default function ParkingLotForm({ 
+    submitData,
+    id, 
+    defaultDate,
+    defaultPriority,
+    defaultLink,
+    defaultDescription,
+    cancelClicked,
+}) {
 
-    const [date, setDate] = useState('');
-    const [link, setLink] = useState('');
-    const [description, setDescription] = useState('');
-    const [priority, setPriority] = useState(PRIORITIES.Medium);
+    let idPrefix = '';
+    if (typeof id === 'string' && id.length > 0) {
+        idPrefix = id + '-';
+    }
+
+    const [date, setDate] = useState(defaultDate ?? '');
+    const [link, setLink] = useState(defaultLink ?? '');
+    const [description, setDescription] = useState(defaultDescription ?? '');
+    const [priority, setPriority] = useState(defaultPriority ?? PRIORITIES.Medium);
 
     function handleDateChange(e) {
         setDate(e.target.value);
@@ -38,7 +51,7 @@ export default function ParkingLotForm({ addItem }) {
 
         const [y, M, d] = date.split('-');
         const formattedDate = `${M}/${d}/${y}`;
-        addItem(formattedDate, link, description, priority);
+        submitData(formattedDate, link, description, priority);
 
         setDate('');
         setLink('');
@@ -52,39 +65,39 @@ export default function ParkingLotForm({ addItem }) {
             className="parking-lot-form"
             onSubmit={handleSubmit}>
             <FormGroup className="parking-lot-row">
-                <Label htmlFor="link-date">
+                <Label htmlFor={`${idPrefix}link-date`}>
                     Date
                 </Label>
                 <Input
                     type="date"
                     name="date"
-                    id="link-date"
+                    id={`${idPrefix}link-date`}
                     value={date}
                     onChange={handleDateChange}
                     required
                 />
             </FormGroup>
             <FormGroup className="parking-lot-row">
-                <Label htmlFor="link-url">
+                <Label htmlFor={`${idPrefix}link-url`}>
                     Link
                 </Label>
                 <Input
                     type="url"
                     name="url"
-                    id="link-url"
+                    id={`${idPrefix}link-url`}
                     value={link}
                     onChange={handleLinkChange}
                     required
                 />
             </FormGroup>
             <FormGroup className="parking-lot-row">
-                <Label htmlFor="link-description">
+                <Label htmlFor={`${idPrefix}link-description`}>
                     Description
                 </Label>
                 <Input
                     type="text"
                     name="description"
-                    id="link-description"
+                    id={`${idPrefix}link-description`}
                     value={description}
                     onChange={handleDescriptionChange}
                     required 
@@ -98,10 +111,10 @@ export default function ParkingLotForm({ addItem }) {
                         value={PRIORITIES.High}
                         checked={priority === PRIORITIES.High}
                         onChange={handlePriorityChange}
-                        id="prio-high"
+                        id={`${idPrefix}prio-high`}
                     />
                     {' '}
-                    <Label htmlFor="prio-high" className="me-3">
+                    <Label htmlFor={`${idPrefix}prio-high`} className="me-3">
                         High
                     </Label>                    
                 </div>
@@ -112,10 +125,10 @@ export default function ParkingLotForm({ addItem }) {
                         value={PRIORITIES.Medium}
                         checked={priority === PRIORITIES.Medium}
                         onChange={handlePriorityChange}
-                        id="prio-medium"
+                        id={`${idPrefix}prio-medium`}
                     />
                     {' '}
-                    <Label htmlFor="prio-medium" className="me-3">
+                    <Label htmlFor={`${idPrefix}prio-medium`} className="me-3">
                         Medium
                     </Label>
                 </div>
@@ -126,10 +139,10 @@ export default function ParkingLotForm({ addItem }) {
                         value={PRIORITIES.Low}
                         checked={priority === PRIORITIES.Low}
                         onChange={handlePriorityChange}
-                        id="prio-low"
+                        id={`${idPrefix}prio-low`}
                     />
                     {' '}
-                    <Label htmlFor="prio-low" className="me-3">
+                    <Label htmlFor={`${idPrefix}prio-low`} className="me-3">
                         Low
                     </Label> 
                 </div>
@@ -137,6 +150,15 @@ export default function ParkingLotForm({ addItem }) {
             <Button type="submit">
                 Submit
             </Button>
+            {
+                typeof cancelClicked === 'function' && 
+                <Button 
+                    type="button" 
+                    className="ms-3"
+                    onClick={cancelClicked}>
+                    Cancel
+                </Button>
+            }
         </Form>
     )
 }

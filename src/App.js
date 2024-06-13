@@ -36,6 +36,24 @@ export default function App() {
         ]);
     }
 
+    function editItem(id, newDate, newLink, newDescription, newPriority) {
+        setParkingLotItems((oldItems) =>
+            oldItems.map((item) => {
+                if (item.id === id) {
+                    return {
+                        id,
+                        date: newDate,
+                        description: newDescription,
+                        link: newLink,
+                        priority: newPriority,
+                    };
+                } else {
+                    return item;
+                }
+            })
+        );
+    }
+
     function deleteItem(id) {
         setParkingLotItems((oldItems) =>
             oldItems.filter((item) => item.id !== id)
@@ -50,10 +68,11 @@ export default function App() {
                 <Timer />
             </header>
             <main>
-                <ParkingLotForm addItem={addItem} />
+                <ParkingLotForm submitData={addItem} />
                 <ParkingLotList
                     parkingLotItems={parkingLotItems}
                     deleteItem={deleteItem}
+                    editItem={editItem}
                 />
             </main>
         </div>
